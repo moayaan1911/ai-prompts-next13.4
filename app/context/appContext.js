@@ -6,10 +6,10 @@ import React, { useState, createContext } from 'react';
 export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [providers, setProviders] = useState(null);
 
   return (
-    <AppContext.Provider value={{ isLoggedIn, setLoggedIn }}>
+    <AppContext.Provider value={{ providers, setProviders }}>
       {children}
     </AppContext.Provider>
   );

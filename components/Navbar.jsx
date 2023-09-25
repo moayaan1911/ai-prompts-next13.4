@@ -5,14 +5,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { AiFillDownSquare } from 'react-icons/ai';
 import { getProviders, useSession, signIn, signOut } from 'next-auth/react';
+import { AppContext } from '@/app/context/appContext';
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [provider, setProvider] = useState(null);
+  const { providers, setProviders } = useContext(AppContext);
   const { data: session } = useSession();
   useEffect(() => {
     const setUpProvider = async () => {
       const response = await getProviders();
-      setProvider(response);
+      setProviders(response);
     };
     setUpProvider();
   }, []);
@@ -26,12 +27,12 @@ export default function Navbar() {
       />
       {!session?.user ? (
         <>
-          {provider && (
+          {providers && (
             // Object.values(provider).map((prv) => (
             <button
               className='hover:bg-white px-2 py-1 hover:rounded-lg hover:from-blue-500 hover:to-blue-900 hover:bg-gradient-to-r'
               onClick={() => {
-                signIn(provider.id);
+                signIn(providers.id);
               }}>
               Login
             </button>
