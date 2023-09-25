@@ -26,17 +26,16 @@ export default function Navbar() {
       />
       {!session?.user ? (
         <>
-          {provider &&
-            Object.values(provider).map((prv) => (
-              <button
-                className='hover:bg-white px-2 py-1 hover:rounded-lg hover:from-blue-500 hover:to-blue-900 hover:bg-gradient-to-r'
-                key={prv.name}
-                onClick={() => {
-                  signIn(provider.id);
-                }}>
-                Login
-              </button>
-            ))}
+          {provider && (
+            // Object.values(provider).map((prv) => (
+            <button
+              className='hover:bg-white px-2 py-1 hover:rounded-lg hover:from-blue-500 hover:to-blue-900 hover:bg-gradient-to-r'
+              onClick={() => {
+                signIn(provider.id);
+              }}>
+              Login
+            </button>
+          )}
         </>
       ) : (
         <div className='relative'>
@@ -45,12 +44,6 @@ export default function Navbar() {
               src={session?.user.image}
               className='w-12 h-12 rounded-2xl border border-gray-200 mx-auto md:mx-2'
               title={`Logged in as ${session?.user.email}`}
-              onClick={() => {
-                window.open(
-                  'https://mail.google.com/mail/u/0/#inbox',
-                  '_blank'
-                );
-              }}
             />
             <button className='md:px-1 py-1 hover:text-black text-md '>
               Create Prompt

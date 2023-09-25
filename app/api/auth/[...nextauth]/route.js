@@ -2,6 +2,7 @@
 
 import GoogleProvider from 'next-auth/providers/google';
 import NextAuth from 'next-auth';
+import GitHubProvider from 'next-auth/providers/github';
 import { connectToDatabase } from '@/app/database/mongo.setup';
 import User from '@/app/models/user.models';
 
@@ -10,10 +11,31 @@ const authHandler = NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      httpOptions: {
+        timeout: 40000,
+      },
+    }),
+    GitHubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      httpOptions: {
+        timeout: 40000,
+      },
     }),
   ],
   callbacks: {
-    async signIn({ profile }) {
+    async signIn({ error, profile }) {
+      if (error) {
+        // Log and monitor error
+        console.error('OAuth Error', {
+          errorCode: error.code,
+          errorMessage: error.message,
+          provider: account.provider,
+        });
+
+        // Gracefully return
+        return false;
+      }
       try {
         await connectToDatabase();
         const userExists = await User.findOne({ email: profile.email });
