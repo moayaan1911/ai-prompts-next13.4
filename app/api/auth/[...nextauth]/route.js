@@ -3,8 +3,8 @@
 import GoogleProvider from 'next-auth/providers/google';
 import NextAuth from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
-import { connectToDatabase } from '@/app/database/mongo.setup';
-import User from '@/app/models/user.models';
+import { connectToDatabase } from '@/database/mongo.setup';
+import User from '@/models/user.models';
 
 const authHandler = NextAuth({
   providers: [

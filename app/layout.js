@@ -3,8 +3,8 @@
 import Navbar from '@/components/Navbar';
 import './globals.css';
 import { Open_Sans } from 'next/font/google';
-import { AppContextProvider } from './context/appContext';
-import Provider from './session/Provider';
+import { AppContextProvider } from '@/context/appContext';
+import Provider from '@/session/Provider';
 
 const opensans = Open_Sans({ subsets: ['latin'] });
 

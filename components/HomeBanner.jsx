@@ -1,6 +1,6 @@
 /** @format */
 
-import { AppContext } from '@/app/context/appContext';
+import { AppContext } from '@/context/appContext';
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import React, { useContext } from 'react';
