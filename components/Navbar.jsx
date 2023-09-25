@@ -1,7 +1,6 @@
 /** @format */
 'use client';
 import React, { useContext, useEffect, useState } from 'react';
-import defiPrompts from '../assets/defiprompts.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AiFillDownSquare } from 'react-icons/ai';
@@ -20,8 +19,9 @@ export default function Navbar() {
   return (
     <div className='flex md:justify-between justify-center md:px-5 mx-auto py-2 border-b-4 border-blue-900 text-white items-center md:flex-row flex-col bg-blue-400'>
       <Image
-        src={defiPrompts}
+        src={'/assets/defiprompts.png'}
         width={'300'}
+        height={'200'}
         className='rounded'
       />
       {!session?.user ? (
