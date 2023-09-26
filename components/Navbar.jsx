@@ -19,12 +19,14 @@ export default function Navbar() {
   }, []);
   return (
     <div className='flex md:justify-between justify-center md:px-5 mx-auto py-2 border-b-4 border-blue-900 text-white items-center md:flex-row flex-col bg-blue-400'>
-      <Image
-        src={'/assets/defiprompts.png'}
-        width={'300'}
-        height={'200'}
-        className='rounded'
-      />
+      <Link href={'/'}>
+        <Image
+          src={'/assets/defiprompts.png'}
+          width={'300'}
+          height={'200'}
+          className='rounded'
+        />
+      </Link>
       {!session?.user ? (
         <>
           {providers && (
@@ -45,9 +47,11 @@ export default function Navbar() {
               className='w-12 h-12 rounded-2xl border border-gray-200 mx-auto md:mx-2'
               title={`Logged in as ${session?.user.email}`}
             />
-            <button className='md:px-1 py-1 hover:text-black text-md '>
+            <Link
+              className='md:px-1 py-1 hover:text-black text-md '
+              href={'/create-prompt'}>
               Create Prompt
-            </button>
+            </Link>
             <button
               className='md:px-1 py-1 mx-auto md:m-0 text-4xl'
               onClick={() => setOpen(!open)}>

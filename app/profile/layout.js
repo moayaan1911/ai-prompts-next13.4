@@ -1,7 +1,7 @@
 /** @format */
 
 export const metadata = {
-  title: 'Create new Prompt - defiPrompts',
+  title: `My Profile - defiPrompts`,
   description:
     'AI Prompts encyclopedia for WEB3 and DeFi. This open source project provides a collection of AI-generated prompts to assist developers building decentralized applications and blockchain projects.',
   keywords: [
@@ -18,6 +18,6 @@ export const metadata = {
 
 // Regular layout
 // - Applies to route segments in app/dashboard/*
-export default function CreatePromptLayout({ children }) {
+export default function ProfileLayout({ children }) {
   return <>{children}</>;
 }
