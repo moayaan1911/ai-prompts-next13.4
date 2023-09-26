@@ -3,9 +3,14 @@
 import { AppContext } from '@/context/appContext';
 import React, { useContext, useState } from 'react';
 
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import toast from 'react-hot-toast';
 export default function CreatePrompt() {
   const { prompt, setPrompt, tags, setTags } = useContext(AppContext);
   const [tagInput, setTagInput] = useState('');
+  const { data: session } = useSession();
+  const router = useRouter();
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setTagInput(inputValue);
@@ -25,6 +30,37 @@ export default function CreatePrompt() {
     // Update the tags state with the formatted tags
     setTags(inputTags);
   };
+
+  async function handleSubmitPrompt() {
+    toast.loading('Creating Prompt..', { id: 1 });
+    event.preventDefault();
+    const response = await fetch('http://localhost:3000/api/prompt', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        prompt: prompt,
+        tags: tags,
+        creator: session.user.email,
+      }),
+    });
+
+    if (response.ok) {
+      toast.success('Prompt Created Succesfully', { id: 1 });
+    } else {
+      toast.error('Error creating Prompt', { id: 1 });
+    }
+    setTimeout(() => {
+      toast.remove();
+    }, 1500);
+    setTagInput('');
+    setTags([]);
+    setPrompt('');
+    setTimeout(() => {
+      router.push('/');
+    }, 6000);
+  }
   return (
     <div className='flex flex-col mt-8 text-center mx-auto'>
       <h1 className='my-10 text-5xl font-bold'>
@@ -33,10 +69,7 @@ export default function CreatePrompt() {
 
       <form
         className='flex flex-col items-center justify-center'
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(tags, prompt);
-        }}>
+        onSubmit={handleSubmitPrompt}>
         <div className='md:w-3/5 w-4/5 my-12'>
           <label
             htmlFor='prompt'

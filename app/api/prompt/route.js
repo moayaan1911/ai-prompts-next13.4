@@ -21,7 +21,11 @@ export async function POST(request) {
 
     await connectToDatabase();
 
-    const newPrompt = new Prompt(data);
+    const newPrompt = new Prompt({
+      prompt: data.prompt,
+      tags: data.tags,
+      creator: data.creator,
+    });
     await newPrompt.save();
 
     return NextResponse.json({

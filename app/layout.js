@@ -5,6 +5,7 @@ import './globals.css';
 import { Open_Sans } from 'next/font/google';
 import { AppContextProvider } from '@/context/appContext';
 import Provider from '@/session/Provider';
+import { Toaster } from 'react-hot-toast';
 
 const opensans = Open_Sans({ subsets: ['latin'] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
       <body className={opensans.className}>
         <Provider>
           <AppContextProvider>
+            <Toaster />
             <Navbar />
             {children}
           </AppContextProvider>

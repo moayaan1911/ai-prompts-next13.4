@@ -8,7 +8,7 @@ const PromptSchema = new Schema({
     required: [true, 'Please Enter the prompt'],
   },
   tags: {
-    type: String,
+    type: Array,
   },
   upvotes: {
     type: Number,
