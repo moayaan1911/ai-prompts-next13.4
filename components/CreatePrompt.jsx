@@ -32,9 +32,16 @@ export default function CreatePrompt() {
   };
 
   async function handleSubmitPrompt() {
-    toast.loading('Creating Prompt..', { id: 1 });
     event.preventDefault();
-    const response = await fetch('http://localhost:3000/api/prompt', {
+    if (!session) {
+      toast.error('Sign in first');
+      setTimeout(() => {
+        toast.remove();
+      }, 2000);
+      return;
+    }
+    toast.loading('Creating Prompt..', { id: 1 });
+    const response = await fetch('/api/prompt', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

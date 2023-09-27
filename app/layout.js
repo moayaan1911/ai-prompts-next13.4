@@ -10,7 +10,7 @@ import { Toaster } from 'react-hot-toast';
 const opensans = Open_Sans({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'defiPrompts',
+  title: 'defiPrompts-WEB3 AI Prompts',
   description:
     'AI Prompts encyclopedia for WEB3 and DeFi. This open source project provides a collection of AI-generated prompts to assist developers building decentralized applications and blockchain projects.',
   keywords: [

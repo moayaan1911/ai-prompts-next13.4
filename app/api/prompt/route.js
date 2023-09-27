@@ -7,7 +7,7 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     await connectToDatabase();
-    const prompts = await Prompt.findOne({});
+    const prompts = await Prompt.find({});
     return NextResponse.json({ prompts });
   } catch (error) {
     console.log(error);
@@ -20,13 +20,15 @@ export async function POST(request) {
     const data = await request.json();
 
     await connectToDatabase();
-
+    // const prompts = await Prompt.find({});
     const newPrompt = new Prompt({
       prompt: data.prompt,
       tags: data.tags,
       creator: data.creator,
     });
     await newPrompt.save();
+
+    // await prompts.push(newPrompt);
 
     return NextResponse.json({
       message: 'Prompt successfully added!',

@@ -17,6 +17,7 @@ export default function Navbar() {
     };
     setUpProvider();
   }, []);
+
   return (
     <div className='flex md:justify-between justify-center md:px-5 mx-auto py-2 border-b-4 border-blue-900 text-white items-center md:flex-row flex-col bg-blue-400'>
       <Link href={'/'}>
@@ -48,7 +49,7 @@ export default function Navbar() {
               title={`Logged in as ${session?.user.email}`}
             />
             <Link
-              className='md:px-1 py-1 hover:text-black text-md '
+              className='md:px-1 py-1 hover:text-black text-md flex items-center'
               href={'/create-prompt'}>
               Create Prompt
             </Link>
