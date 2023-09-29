@@ -12,7 +12,7 @@ defiPrompts is an AI prompts encyclopedia for WEB3 and DeFi. This open source pr
 
 ### Live Site
 
-[Add deployment url here]
+[https://defiprompts.vercel.app/]
 
 ## Features
 

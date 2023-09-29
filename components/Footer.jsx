@@ -27,7 +27,7 @@ export default function Footer() {
             Video Demo
           </button>
           <a
-            href='/zip/project.zip'
+            href='/zip/defiprompts.zip'
             download={'defiprompts.zip'}
             className='cursor-pointer hover:text-black '>
             Source Code

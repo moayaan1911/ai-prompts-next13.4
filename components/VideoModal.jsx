@@ -8,9 +8,9 @@ export default function VideoModal({ show, onClose }) {
       <div className='bg-white p-4 rounded-xl'>
         <iframe
           width='500'
-          height='316'
-          src='https://www.youtube.com/embed/YlsXJIYxVbc'
-          title='PolyCloudV2 | Decentralized Storage App | IPFS React Thirdweb Vite Hardhat Solidity Tailwind'
+          height='350'
+          src='https://www.youtube.com/embed/lbQdt8Mfkv8'
+          title='AI Prompts Next.js Project | defiPrompts | Next.js 13.4+ MongoDB Tailwind Vercel Project Tutorial'
           frameborder='0'
           allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
           allowfullscreen></iframe>
