@@ -72,10 +72,9 @@ export default function Navbar() {
 
               <div
                 className='flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer'
-                onClick={() => {
-                  setOpen(false);
-                  signOut({ redirect: '/' });
-                }}>
+                onClick={() =>
+                  signOut({ callbackUrl: 'http://localhost:3000/' })
+                }>
                 Logout
               </div>
             </div>

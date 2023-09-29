@@ -23,6 +23,8 @@ export default function DeleteModal({ setIsOpen, isOpen, id, fetchPrompts }) {
         .then((data) => {
           console.log(data);
           toast.success('Deleted Succesfully', { id: 1 });
+          fetchPrompts();
+          setIsOpen(false);
         });
     } catch (error) {
       toast.error('Error in Upvoting', { id: 1 });
@@ -32,8 +34,6 @@ export default function DeleteModal({ setIsOpen, isOpen, id, fetchPrompts }) {
     setTimeout(() => {
       toast.remove();
     }, 1200);
-
-    fetchPrompts();
   }
   return (
     <div className='fixed inset-0 flex items-center justify-center p-4'>

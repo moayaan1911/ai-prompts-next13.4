@@ -6,6 +6,7 @@ import { Open_Sans } from 'next/font/google';
 import { AppContextProvider } from '@/context/appContext';
 import Provider from '@/session/Provider';
 import { Toaster } from 'react-hot-toast';
+import Footer from '@/components/Footer';
 
 const opensans = Open_Sans({ subsets: ['latin'] });
 
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
             <Toaster />
             <Navbar />
             {children}
+            <Footer />
           </AppContextProvider>
         </Provider>
       </body>

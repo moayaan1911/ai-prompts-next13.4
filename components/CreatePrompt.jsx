@@ -1,13 +1,13 @@
 /** @format */
 'use client';
 import { AppContext } from '@/context/appContext';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import toast from 'react-hot-toast';
 export default function CreatePrompt() {
-  const { prompt, setPrompt, tags, setTags } = useContext(AppContext);
+  const { prompt, setPrompt, tags, setTags, setOpen } = useContext(AppContext);
   const [tagInput, setTagInput] = useState('');
   const { data: session } = useSession();
   const router = useRouter();
@@ -66,10 +66,17 @@ export default function CreatePrompt() {
     setPrompt('');
     setTimeout(() => {
       router.push('/');
-    }, 6000);
+    }, 2000);
   }
+
+  useEffect(() => {
+    if (!session) {
+      router.push('/');
+    }
+    setOpen(false);
+  }, []);
   return (
-    <div className='flex flex-col mt-8 text-center mx-auto'>
+    <div className='flex flex-col mt-8 text-center mx-auto min-h-[100vh]'>
       <h1 className='my-10 text-5xl font-bold'>
         Create <span className='text-blue-500 font-serif'>Prompt</span>
       </h1>

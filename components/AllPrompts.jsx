@@ -6,6 +6,7 @@ import { useState } from 'react';
 import DeleteModal from './DeleteModal';
 import toast from 'react-hot-toast';
 import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 export default function AllPrompts({
   creator,
@@ -75,9 +76,11 @@ export default function AllPrompts({
             ))}
           </div>
 
-          <p className='text-blue-700 font-light text-xs'>
+          <Link
+            className='text-blue-700 font-light text-xs'
+            href={`/profile/${creator}`}>
             Created by: {creator}
-          </p>
+          </Link>
         </div>
 
         <div className='flex flex-col justify-around'>
