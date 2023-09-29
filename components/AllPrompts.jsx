@@ -28,6 +28,13 @@ export default function AllPrompts({
       }, 2000);
       return;
     }
+    if (session.user.email.toString() == String(creator)) {
+      toast.error("You can't upvote on your own prompt");
+      setTimeout(() => {
+        toast.remove();
+      }, 1500);
+      return;
+    }
     try {
       toast.loading('Upvoting  the prompt', { id: 1 });
       await fetch(`/api/prompt/${id}`, { method: 'PUT' })
@@ -82,11 +89,13 @@ export default function AllPrompts({
             />
             <p>{upvotes}</p>
           </div>
-          <MdDelete
-            size={28}
-            className='text-gray-500 hover:text-red-500 cursor-pointer'
-            onClick={() => setIsOpen(true)}
-          />
+          {session.user.email.toString() == String(creator) && (
+            <MdDelete
+              size={28}
+              className='text-gray-500 hover:text-red-500 cursor-pointer'
+              onClick={() => setIsOpen(true)}
+            />
+          )}
         </div>
       </div>
 

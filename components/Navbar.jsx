@@ -6,10 +6,13 @@ import Link from 'next/link';
 import { AiFillDownSquare } from 'react-icons/ai';
 import { getProviders, useSession, signIn, signOut } from 'next-auth/react';
 import { AppContext } from '@/context/appContext.js';
+import { useRouter } from 'next/navigation';
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-  const { providers, setProviders } = useContext(AppContext);
+  const { providers, setProviders, open, setOpen, setEmail } =
+    useContext(AppContext);
   const { data: session } = useSession();
+  const router = useRouter();
+  const randomString = Math.random().toString(36).slice(2, 7);
   useEffect(() => {
     const setUpProvider = async () => {
       const response = await getProviders();
@@ -17,7 +20,7 @@ export default function Navbar() {
     };
     setUpProvider();
   }, []);
-
+  setEmail(session?.user?.email);
   return (
     <div className='flex md:justify-between justify-center md:px-5 mx-auto py-2 border-b-4 border-blue-900 text-white items-center md:flex-row flex-col bg-blue-400'>
       <Link href={'/'}>
@@ -62,14 +65,17 @@ export default function Navbar() {
           {open && (
             <div className='absolute right-0 w-56 mt-2 py-2 bg-white border rounded shadow-xl md:text-left text-center'>
               <Link
-                href='/profile'
+                href={`/profile/${session.user.email}`}
                 className='flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100'>
                 Profile
               </Link>
 
               <div
                 className='flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer'
-                onClick={() => signOut()}>
+                onClick={() => {
+                  setOpen(false);
+                  signOut({ redirect: '/' });
+                }}>
                 Logout
               </div>
             </div>

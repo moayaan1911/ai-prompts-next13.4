@@ -18,8 +18,6 @@ export default function HomePrompts() {
       .then((data) => setAllPrompts(data.prompts));
   };
 
-  console.log(allPrompts);
-
   useEffect(() => {
     fetchPrompts();
   }, []);

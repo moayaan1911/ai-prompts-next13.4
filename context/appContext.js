@@ -10,6 +10,8 @@ export const AppContextProvider = ({ children }) => {
   const [prompt, setPrompt] = useState('');
   const [tags, setTags] = useState([]);
   const [allPrompts, setAllPrompts] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState('');
 
   return (
     <AppContext.Provider
@@ -22,6 +24,10 @@ export const AppContextProvider = ({ children }) => {
         setTags,
         allPrompts,
         setAllPrompts,
+        open,
+        setOpen,
+        email,
+        setEmail,
       }}>
       {children}
     </AppContext.Provider>
